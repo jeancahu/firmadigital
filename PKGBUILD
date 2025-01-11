@@ -17,6 +17,17 @@ md5sums=(
 )
 
 prepare() {
+    echo "========================================"
+    echo "Remember: The source file sfd_ClientesLinux_DEB64_Rev26.zip must be downloaded manually."
+    echo "Download it from: https://soportefirmadigital.com/sfdj/dl.aspx?lang=es"
+    echo "========================================"
+
+    # Ahora descomprimir el archivo ZIP, si ya está descargado manualmente
+    if [ ! -f "$srcdir/sfd_ClientesLinux_DEB64_Rev26.zip" ]; then
+        echo "ERROR: sfd_ClientesLinux_DEB64_Rev26.zip not found. Please download it manually."
+        exit 1
+    fi
+
     # Extraer el archivo ZIP
     unzip -o "$srcdir/sfd_ClientesLinux_DEB64_Rev26.zip" -d "$srcdir"
 }

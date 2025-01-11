@@ -1,0 +1,19 @@
+pkgbase = firmadigital
+	pkgdesc = AgenteGaudi para FirmaDigital Costa Rica, Linux client for Costa Rica FirmaDigital
+	pkgver = 26
+	pkgrel = 1
+	install = firmadigital.install
+	arch = x86_64
+	license = custom
+	depends = pcsclite
+	depends = ccid
+	options = !strip
+	options = docs
+	options = libtool
+	options = emptydirs
+	options = !zipman
+	options = staticlibs
+	source = sfd_ClientesLinux_DEB64_Rev26.zip
+	md5sums = 56da38a0f5b8c18aa2001ee55f14c450
+
+pkgname = firmadigital
