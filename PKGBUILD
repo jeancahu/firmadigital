@@ -83,6 +83,10 @@ package() {
 
     install -Dm644 "${srcdir}/IDPClientDB.xml" "${pkgdir}/etc/Athena/IDPClientDB.xml"
     install -Dm644 "${srcdir}/firma-digital.module" "${pkgdir}/usr/share/p11-kit/modules/firma-digital.module"
+
+    ## El artículo insta a utilizar el firmador libre:
+    # "https://firmador.libre.cr/"
+    # "https://firmador.libre.cr/firmador.jar"
     ### END Referencia https://fran.cr/instalar-firma-digital-costa-rica-manjaro-arch-linux/
 
     # Crear el enlace simbólico a Agente-GAUDI
