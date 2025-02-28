@@ -1,10 +1,12 @@
 # ArchLinux Package FirmaDigital Costa Rica
 
+[README Español](./README_es.md)
+
 This repository contains a script that facilitates the installation of the digital signature software on Arch-based systems. Please note that the software itself is not officially provided here, but this script is designed to help automate the installation process.
 
 ## Downloading the Required File
 
-To use this script, you will need to download the `sfd_ClientesLinux_DEB64_Rev26.zip` file manually. This file is only available to **Firmadigital** users.
+To use this script, you will need to download the `sfd_ClientesLinux_DEB64_\*_Rev\*.zip` file manually. This file is only available to **Firmadigital** users.
 
 You can download the ZIP file from the following link:
 
@@ -20,7 +22,7 @@ You can download the ZIP file from the following link:
 
 ## How to Use
 
-1. Download the `sfd_ClientesLinux_DEB64_Rev26.zip` file from the link provided above.
+1. Download the `sfd_ClientesLinux_DEB64_Ubuntu24_Rev27.zip` file from the link provided above.
 2. Place the ZIP file in the same directory as the script or specify the correct path in the `PKGBUILD`.
 3. Follow the instructions in the `PKGBUILD` to build and install the package.
 
