@@ -3,6 +3,7 @@ post_install() {
     echo -e "\033[1;33mRemember to enable and start the pcscd service:\033[0m"
         echo -e "\033[1;33msudo systemctl enable --now pcscd\033[0m"
         echo -e "\033[1;33mThis is required for the digital signature client to work.\033[0m"
+        echo -e "sudo update-ca-trust"
         }
 
 # If the package is upgraded, also show the message

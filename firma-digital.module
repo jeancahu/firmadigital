@@ -1,0 +1,1 @@
+remote: |bwrap --unshare-all --dir /tmp --proc /proc --dev /dev --ro-bind /etc/Athena /etc/Athena --ro-bind /usr /usr --ro-bind /var/run/pcscd /var/run/pcscd --ro-bind /run/pcscd /run/pcscd p11-kit remote /usr/lib/libASEP11.so
