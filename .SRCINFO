@@ -14,6 +14,10 @@ pkgbase = firmadigital
 	options = !zipman
 	options = staticlibs
 	source = sfd_ClientesLinux_DEB64_Rev26.zip
+	source = firma-digital.module
+	source = IDPClientDB.xml
 	md5sums = 56da38a0f5b8c18aa2001ee55f14c450
+	md5sums = 6d1e071b3edbadf57858fb6d64cefe2a
+	md5sums = d8a9bc85f2e8410b92b352d5d28ac938
 
 pkgname = firmadigital

@@ -45,21 +45,28 @@ package() {
     )
 
     # Extraer y copiar los archivos de cada .deb
+    install -d "${srcdir}/firmadigital"
     for deb in "${debs[@]}"; do
 
         debname=$(basename "${deb/.deb/}")
-        mkdir $debname
+        install -d "${srcdir}/${debname}"
         bsdtar -xf "$deb" -C "$srcdir/$debname"
 
         if [ -f "$srcdir/$debname/data.tar.xz" ]; then
-            tar -xf "$srcdir/$debname/data.tar.xz" -C "$pkgdir"
+            tar -xf "$srcdir/$debname/data.tar.xz" -C "$srcdir/firmadigital"
         elif [ -f "$srcdir/$debname/data.tar.gz" ]; then
-            tar -xvzf "$srcdir/$debname/data.tar.gz" -C "$pkgdir"
+            tar -xvzf "$srcdir/$debname/data.tar.gz" -C "$srcdir/firmadigital"
         else
             ## There is no data.tar.*
             exit 1
         fi
     done
+
+    ## Quitar permisos 777 a algunos ejecutables y archivos ya que es un hueco de seguridad
+    find "${srcdir}/firmadigital/" -perm -0077 -exec chmod go-w {} +
+
+    ## Mover los archivos de firmadigital al pkgdir
+    cp -r "${srcdir}/firmadigital/"* "${pkgdir}"
 
     # Copiar certificados
     for cert in $srcdir/sfd_ClientesLinux*/Firma\ Digital/Certificados/*
