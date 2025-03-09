@@ -18,7 +18,7 @@ md5sums=(
 
 prepare() {
     echo "========================================"
-    echo "Remember: The source file sfd_ClientesLinux_DEB64_Rev26.zip must be downloaded manually."
+    echo "Remember: The source file ${source[0]} must be downloaded manually."
     echo "Download it from: https://soportefirmadigital.com/sfdj/dl.aspx?lang=es"
     echo "========================================"
 
