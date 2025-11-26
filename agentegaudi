@@ -1,0 +1,14 @@
+#!/bin/bash
+
+/opt/Agente-GAUDI/bin/Agente-GAUDI
+
+### Eliminar el daemon midware porque es una obscenidad en consumo de recursos
+while ps aux | grep -v grep | grep -c "[^A-Za-z]idocachesrv"
+do
+    PROC_NUM=$( ps aux | grep -v grep | grep idocachesrv | sed 's| * |\t|g' |
+                    cut -f 2 | sort | head -n 1 )
+    echo    kill -s 15 $PROC_NUM
+    kill -s 15 $PROC_NUM
+done
+
+exit 0

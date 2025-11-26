@@ -1,19 +1,33 @@
 # Maintainer: Jeancarlo Hidalgo <jeancahu [at] gmail [dot] com>
 
 pkgname=firmadigital
-pkgver=27
+pkgver=29
 pkgrel=1
 arch=('x86_64')
 pkgdesc="AgenteGaudi para FirmaDigital Costa Rica, Linux client for Costa Rica FirmaDigital"
 license=('custom')
-depends=('pcsclite' 'pcsc-tools' 'ccid') # Dependencias mostradas en lib.sh
+
+# Dependencias necesarias SOLAMENTE para construir el paquete (como 7z para extraer certificados de .EXE):
+#makedepends=('p7zip')
+
+depends=(
+    #'jre17-openjdk' # Runtime de OPENJDK # TODO
+    'pcsclite'
+    'pcsc-tools'
+    'ccid'
+    # 'opensc' # TODO
+) # Dependencias mostradas en lib.sh
 install=firmadigital.install
 options=(!strip docs libtool emptydirs !zipman staticlibs)
 source=(
-    "sfd_ClientesLinux_DEB64_Ubuntu24_Rev27.zip" # Nombre del paquete principal
+    "sfd_ClientesLinux_DEB64_Ubuntu24_Rev29.zip" # Nombre del paquete principal
+    "sfd_InstaladorCertificadosCA_Rev16.exe"
+    "agentegaudi"
 )
 md5sums=(
-    'ded86e0bd6ce043a39526a66a4de5be8'
+    'e2cd864d358caaa90f0939861c399fbc'
+    '9686134ebbafc62a6b0c5dcb58e64d8c'
+    '937d13b32216a49a370756e20a147f88'
 )
 
 prepare() {
@@ -27,32 +41,35 @@ prepare() {
         echo "ERROR: ${source[0]} not found. Please download it manually."
         exit 1
     fi
-
-    # Extraer el archivo ZIP
-    unzip -o "$srcdir/${source[0]}" -d "$srcdir"
 }
 
 package() {
     # Rutas de los .deb dentro del ZIP
+    local datadir="${srcdir}/data"
     local debs=(
-        "$srcdir/${source[0]/.zip/}/Firma Digital/Idopte/scmiddleware_idopte_6.23.32.0_ubun24_amd64.deb"
-        "$srcdir/${source[0]/.zip/}/Firma Digital/Agente GAUDI/agente-gaudi_20.0_amd64.deb"
+        "$srcdir/Firma Digital/Idopte/scmiddleware-costa-rica-user_idopte_6.23.44.0_ubun24_amd64.deb"
+        "$srcdir/Firma Digital/Agente GAUDI/agente-gaudi_26.0_amd64.deb"
     )
+    echo "${debs[0]}" "${debs[1]}"
 
     # Extraer y copiar los archivos de cada .deb
     install -d "${srcdir}/firmadigital"
     for deb in "${debs[@]}"; do
 
+        printf "${deb}\n"
         debname=$(basename "${deb/.deb/}")
-        install -d "${srcdir}/${debname}"
-        bsdtar -xf "$deb" -C "$srcdir/$debname"
+        install -d "${srcdir}/debs/${debname}"
+        bsdtar -xf "$deb" -C "$srcdir/debs/$debname"
 
-        if [ -f "$srcdir/$debname/data.tar.xz" ]; then
-            tar -xf "$srcdir/$debname/data.tar.xz" -C "$srcdir/firmadigital"
-        elif [ -f "$srcdir/$debname/data.tar.gz" ]; then
-            tar -xvzf "$srcdir/$debname/data.tar.gz" -C "$srcdir/firmadigital"
+        if [ -f "$srcdir/debs/$debname/data.tar.xz" ]; then
+            tar -xvf "$srcdir/debs/$debname/data.tar.xz" -C "$srcdir/firmadigital"
+        elif [ -f "$srcdir/debs/$debname/data.tar.zst" ]; then
+            tar -xvf "$srcdir/debs/$debname/data.tar.zst" -C "$srcdir/firmadigital"
+        elif [ -f "$srcdir/debs/$debname/data.tar.gz" ]; then
+            tar -xvzf "$srcdir/debs/$debname/data.tar.gz" -C "$srcdir/firmadigital"
         else
             ## There is no data.tar.*
+            printf "ERROR Processing: ${deb}\n"
             exit 1
         fi
     done
@@ -60,27 +77,44 @@ package() {
     ## Quitar permisos 777 a algunos ejecutables y archivos ya que es un hueco de seguridad
     find "${srcdir}/firmadigital/" -perm -0077 -exec chmod go-w {} +
 
-    ## Mover los archivos de firmadigital al pkgdir
-    cp -r "${srcdir}/firmadigital/"* "${pkgdir}"
+    ## Mover todos los certificados
+    find $srcdir -type f \( -iname "*.cer" -o -iname "*.crt" \) | \
+        while read cert
+        do
+            # Remover acentos y caracteres extraños
+            certname=$( basename "${cert}" | sed 'y/ÁÉÍÓÚÜÑáéíóúüñ/AEIOUUNaeiouun/' |
+                            tr '[:upper:]' '[:lower:]' |
+                            tr -s ' \-()\t' '_'
+                    )
+            # echo $certname $( md5sum "$cert" | cut -f 1 -d ' ' )
+            if [ -f "${srcdir}/firmadigital/usr/share/ca-certificates/trust-source/anchors/firmadigitalcr/${certname}" ]; then : ;
+            else
+                   install -Dm644 "${cert}" "${srcdir}/firmadigital/usr/share/ca-certificates/trust-source/anchors/firmadigitalcr/${certname}"
+            fi
+        done
 
-    # Copiar certificados
-    for cert in $srcdir/sfd_ClientesLinux*/Firma\ Digital/Certificados/*
-    do
-        certname=$( basename "${cert}" )
-        install -Dm644 "${cert}" "${pkgdir}/usr/share/ca-certificates/trust-source/anchors/${certname}"
-    done
-
-    ### BEGIN Referencia https://fran.cr/instalar-firma-digital-costa-rica-manjaro-arch-linux/
-    ## El artículo insta a utilizar el firmador libre:
-    # "https://firmador.libre.cr/"
-    # "https://firmador.libre.cr/firmador.jar"
-    ### END Referencia https://fran.cr/instalar-firma-digital-costa-rica-manjaro-arch-linux/
+    install -d -m 755 "${srcdir}/firmadigital/usr/bin"
 
     # Crear el enlace simbólico a Agente-GAUDI
-    if [ -f "$pkgdir/opt/Agente-GAUDI/bin/Agente-GAUDI" ]; then
-        ln -sf /opt/Agente-GAUDI/bin/Agente-GAUDI "$pkgdir/usr/bin/agentegaudi"
+    if [ -f "${srcdir}/firmadigital/opt/Agente-GAUDI/bin/Agente-GAUDI" ]; then
+        install -D -m 755 "${srcdir}/agentegaudi" "${srcdir}/firmadigital/usr/bin"
     else
         echo "Error: No se encontró el ejecutable Agente-GAUDI."
         exit 1
     fi
+
+    ## Quitar init.d
+    rm -r "${srcdir}/firmadigital/etc/init.d"
+
+    ## Usar runtime del sistema
+    #rm -r "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/runtime"
+    #ln -sf /usr/lib/jvm/java-17-openjdk "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/runtime"
+
+    ## Desktop file
+    sed -i 's|Exec=/opt/Agente-GAUDI.*|Exec=/usr/bin/agentegaudi|' "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/Agente-GAUDI.desktop"
+    install -D -m 644 "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/Agente-GAUDI.desktop" "${srcdir}/firmadigital/usr/share/applications/Agente-GAUDI.desktop"
+    rm "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/Agente-GAUDI.desktop"
+
+    ## Mover los archivos de firmadigital al pkgdir
+    cp -r "${srcdir}/firmadigital/"* "${pkgdir}"
 }

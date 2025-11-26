@@ -2,3 +2,5 @@ sfd_ClientesLinux_DEB64_*.zip
 *.pkg.tar.zst
 pkg/
 src/
+
+*.exe
