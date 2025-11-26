@@ -19,7 +19,7 @@ sleep 0.3
 sleep 0.3
 
 ## Abrir la herramienta
-/opt/Agente-GAUDI/bin/Agente-GAUDI
+/usr/lib/SCMiddleware/SCManager
 
 delete_scm_daemons
 

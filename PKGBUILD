@@ -12,6 +12,7 @@ license=('custom')
 
 depends=(
     #'jre17-openjdk' # Runtime de OPENJDK # TODO
+    'libappindicator' # SCMiddleware dependency
     'pcsclite'
     'pcsc-tools'
     'ccid'
@@ -21,13 +22,15 @@ install=firmadigital.install
 options=(!strip docs libtool emptydirs !zipman staticlibs)
 source=(
     "sfd_ClientesLinux_DEB64_Ubuntu24_Rev29.zip" # Nombre del paquete principal
-    "sfd_InstaladorCertificadosCA_Rev16.exe"
-    "agentegaudi"
+    "sfd_InstaladorCertificadosCA_Rev16.exe" # Certificados
+    "agentegaudi" # Servicio para logearse con firmadigital desde sitios WEB gov.
+    "scmanager" # Cambio de PIN en la tarjeta.
 )
 md5sums=(
     'e2cd864d358caaa90f0939861c399fbc'
     '9686134ebbafc62a6b0c5dcb58e64d8c'
-    '937d13b32216a49a370756e20a147f88'
+    'e0dd664dae96c518526ad005c051e79d'  # agentegaudi
+    '0252f056a209588e3a58d1336f8a32c1'  # scmanager
 )
 
 prepare() {
@@ -93,15 +96,14 @@ package() {
             fi
         done
 
+    ## Crea el directorio de ejecutables
     install -d -m 755 "${srcdir}/firmadigital/usr/bin"
 
     # Crear el enlace simbólico a Agente-GAUDI
-    if [ -f "${srcdir}/firmadigital/opt/Agente-GAUDI/bin/Agente-GAUDI" ]; then
-        install -D -m 755 "${srcdir}/agentegaudi" "${srcdir}/firmadigital/usr/bin"
-    else
-        echo "Error: No se encontró el ejecutable Agente-GAUDI."
-        exit 1
-    fi
+    install -D -m 755 "${srcdir}/agentegaudi" "${srcdir}/firmadigital/usr/bin"
+
+    # Crear el enlace simbólico a SCManager
+    install -D -m 755 "${srcdir}/scmanager" "${srcdir}/firmadigital/usr/bin"
 
     ## Quitar init.d
     rm -r "${srcdir}/firmadigital/etc/init.d"
