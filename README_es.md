@@ -1,22 +1,51 @@
-# Paquete de Arch Linux FirmaDigital Costa Rica
+# Paquete MANUAL y LOCAL de Arch Linux para FirmaDigital Costa Rica
 
-Este repositorio contiene un script que facilita la instalación del software de firma digital en sistemas basados en Arch. Ten en cuenta que el software en sí **no se proporciona oficialmente aquí**, pero este script está diseñado para ayudar a automatizar el proceso de instalación.
+Este repositorio contiene una regla de empaquetador que facilita la conversión del paquete de software de firma digital de formato Debian a sistemas basados en Arch. Ten en cuenta que el software en sí **no se proporciona en este repositorio**.
 
-## Descarga del Archivo Requerido
+## Descarga el paquete oficial de Ubuntu
 
-Para utilizar este script, deberás descargar manualmente el archivo `sfd_ClientesLinux_DEB64_\*Rev\*.zip`. Este archivo solo está disponible para usuarios de **Firmadigital**.
+Para utilizar este script, deberás descargar **manualmente** el archivo `sfd_ClientesLinux_DEB64.zip` el cual contiene el software en cuestión. Este comprimido solo está disponible para usuarios *Autorizados* de **Firmadigital** y no se encuentra en este repositorio.
 
 Puedes descargar el archivo ZIP desde el siguiente enlace:
 
-[Descargar sfd_ClientesLinux_DEB64_Rev26.zip](https://soportefirmadigital.com/sfdj/dl.aspx?lang=es)
+[Consultar en el sitio oficial de Soporte Firma Digital](https://soportefirmadigital.com/)
 
-**Importante**: Debes ser un usuario registrado de **Firmadigital** para acceder a este enlace de descarga. La descarga es **manual** y no se proporciona a través de este repositorio.
+**Importante**: Debes ser un usuario registrado de **Firmadigital** para realizar la descarga de forma **manual**.
 
-## Descargo de Responsabilidad
+## Descargo de Responsabilidad / DISCLAIMER
 
-- El software en este repositorio **no es oficial** y se proporciona tal cual.
-- Este script tiene como objetivo **simplificar** la instalación del software cliente de **Firmadigital** en sistemas basados en Arch Linux.
-- Al usar este script, aceptas la responsabilidad de cumplir con los términos de licencia y uso proporcionados por **Firmadigital**.
+Este repositorio únicamente proporciona herramientas técnicas (como PKGBUILD, scripts o instrucciones)
+para facilitar la instalación del software "Agente GAUDI" en sistemas basados en Arch Linux,
+mediante conversión desde los paquetes oficiales (.deb) publicados por el Banco Central de Costa Rica (BCCR).
+
+### IMPORTANTE:
+
+- Este repositorio NO incluye, distribuye, contiene ni almacena ningún archivo binario,
+  fragmento, componente, biblioteca, código fuente, documentación o recurso perteneciente
+  al software Agente GAUDI o al Banco Central de Costa Rica.
+- Los archivos necesarios para la instalación (incluyendo el paquete .deb oficial)
+  deben ser descargados directamente por el usuario desde las fuentes oficiales del BCCR o FirmaDigital.
+- El uso del software Agente GAUDI está sujeto a la licencia de usuario final emitida por
+  el Banco Central de Costa Rica. Este repositorio NO modifica, altera, parchea,
+  adapta, descompila ni ejecuta ingeniería inversa sobre el software.
+- El script o PKGBUILD proporcionado es únicamente una herramienta auxiliar y opcional.
+  Su uso no exime al usuario de leer, aceptar y cumplir estrictamente la licencia oficial
+  del software Agente GAUDI antes de instalarlo o utilizarlo.
+- El autor de este repositorio no se responsabiliza por el uso indebido del software,
+  incumplimiento de la licencia del BCCR, posibles daños derivados de la instalación o uso,
+  ni por cualquier acción que contravenga la legislación vigente o los términos de licencia.
+- Si usted no está autorizado por el BCCR para usar el software Agente GAUDI en su sistema,
+  o no ha aceptado expresamente los términos de su licencia, debe abstenerse de utilizar
+  el contenido de este repositorio.
+- Este proyecto se proporciona tal cual es de carácter educativo/técnico/personal
+  y no está afiliado, asociado, respaldado, aprobado ni supervisado por el Banco Central de Costa Rica.
+- La regla de empaquetado es OpenSource por lo que puede someterse al escrutinio público, la misma
+  describe procesos estandarizados para el empaquetado y posterior instalación de software en
+  sistemas operativos basados en ArchLinux.
+
+Al utilizar los scripts aquí contenidos, usted asume toda la responsabilidad por su uso y
+declara aceptar los términos anteriores, así como cumplir con los términos de licencia y
+uso proporcionados por **Firmadigital**.
 
 ## Cómo Usarlo
 
@@ -40,7 +69,7 @@ Para utilizar el **Agente-GAUDI**, ejecuta el siguiente comando en la terminal:
 agentegaudi
 ```
 
-Para más información, consulta la documentación oficial de **Firmadigital**.
+Para más información, consulta la documentación oficial de **[Firma Digital](https://soportefirmadigital.com/)**.
 
 ## Licencia
 
