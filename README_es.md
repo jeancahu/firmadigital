@@ -1,6 +1,6 @@
-# Paquete MANUAL y LOCAL de Arch Linux para FirmaDigital Costa Rica
+# Información técnica para instalación MANUAL y LOCAL de FirmaDigital Costa Rica en sistema Arch Linux
 
-Este repositorio contiene una regla de empaquetador que facilita la conversión del paquete de software de firma digital de formato Debian a sistemas basados en Arch. Ten en cuenta que el software en sí **no se proporciona en este repositorio**.
+Este repositorio contiene la regla necesaria para instalación del paquete oficial del software de firma digital en formato Debian para sistemas basados en Arch. Ten en cuenta que el software en sí **no se proporciona en este repositorio**.
 
 ## Descarga el paquete oficial de Ubuntu
 
@@ -51,12 +51,13 @@ uso proporcionados por **Firmadigital**.
 
 1. Descarga el archivo `sfd_ClientesLinux_DEB64_Ubuntu*.zip` desde el enlace proporcionado arriba.
 2. Coloca el archivo ZIP en el mismo directorio que el script o especifica la ruta correcta en el `PKGBUILD`.
-3. Sigue las instrucciones en el `PKGBUILD` para compilar e instalar el paquete.
+3. Sigue las instrucciones en el `PKGBUILD` para interpretar e instalar el paquete Debian.
 
 Una vez que la dependencia esté descargada, puedes ejecutar los siguientes comandos en el directorio del script:
 ```bash
-makepkg
-sudo pacman -U firmadigital-VERSION-x86_64.pkg.tar.zst
+makepkg # Interpretar el paquete oficial en formato Debian para instalación en ArchLinux
+sudo pacman -U firmadigital-VERSION-x86_64.pkg.tar.zst # Instalar el paquete
+rm firmadigital-VERSION-x86_64.pkg.tar.zst # Borrar el archivo temporal de instalación
 ```
 No olvides habilitar e iniciar el servicio **pcscd**, que es necesario para la comunicación con el lector de tarjetas.
 ```bash

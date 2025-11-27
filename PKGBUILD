@@ -1,5 +1,16 @@
 # Maintainer: Jeancarlo Hidalgo <jeancahu [at] gmail [dot] com>
 
+# Nota: Este PKGBUILD es solo un asistente de instalación para el Paquete de Debian (.deb) oficial
+# en sistemas GNU/Linux que no cuentan con APT, APTITUDE o dpkg, cuyo manejador de paquetes es
+# pacman o basados en pacman, y a su vez tampoco incorporan el sistema de servicios
+# SystemV (init.d)
+
+# El instalador no modifica el software contenido en el Paquete en formato Debian ni altera de ninguna
+# forma el funcionamiento del mismo.
+
+# El usuario debe aceptar los términos de licencia del proveedor antes de usar este PKGBUILD.
+# El autor de este script no se responsabiliza por el uso que se haga del mismo.
+
 pkgname=firmadigital
 pkgver=29
 pkgrel=1
@@ -11,20 +22,18 @@ license=('custom')
 #makedepends=('p7zip')
 
 depends=(
-    #'jre17-openjdk' # Runtime de OPENJDK # TODO
     'libappindicator' # SCMiddleware dependency
     'pcsclite'
     'pcsc-tools'
     'ccid'
-    # 'opensc' # TODO
-) # Dependencias mostradas en lib.sh
+) # Dependencias mostradas en lib.sh para Ubuntu en su equivalente de ArchLinux
 install=firmadigital.install
 options=(!strip docs libtool emptydirs !zipman staticlibs)
 source=(
     "sfd_ClientesLinux_DEB64_Ubuntu24_Rev29.zip" # Nombre del paquete principal
     "sfd_InstaladorCertificadosCA_Rev16.exe" # Certificados
     "agentegaudi" # Servicio para logearse con firmadigital desde sitios WEB gov.
-    "scmanager" # Cambio de PIN en la tarjeta.
+    "scmanager"   # Herramienta para cambio de PIN en la tarjeta.
 )
 md5sums=(
     'e2cd864d358caaa90f0939861c399fbc'
@@ -93,18 +102,14 @@ package() {
     ## Crea el directorio de ejecutables
     install -d -m 755 "${srcdir}/firmadigital/usr/bin"
 
-    # Crear el enlace simbólico a Agente-GAUDI
+    # Crear el enlace simbólico a Agente-GAUDI en minúscula (estándar de ArchLinux para ejecutables)
     install -D -m 755 "${srcdir}/agentegaudi" "${srcdir}/firmadigital/usr/bin"
 
-    # Crear el enlace simbólico a SCManager
+    # Crear el enlace simbólico a SCManager en minúscula (estándar de ArchLinux para ejecutables)
     install -D -m 755 "${srcdir}/scmanager" "${srcdir}/firmadigital/usr/bin"
 
-    ## Quitar init.d
+    ## Quitar init.d ya que no existe en ArchLinux
     rm -r "${srcdir}/firmadigital/etc/init.d"
-
-    ## Usar runtime del sistema
-    #rm -r "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/runtime"
-    #ln -sf /usr/lib/jvm/java-17-openjdk "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/runtime"
 
     ## Desktop file
     sed -i 's|Exec=/opt/Agente-GAUDI.*|Exec=/usr/bin/agentegaudi|' "${srcdir}/firmadigital/opt/Agente-GAUDI/lib/Agente-GAUDI.desktop"

@@ -1,8 +1,8 @@
-# Tool for Local Packaging FirmaDigital Costa Rica for a Manual installation on ArchLinux
+# Instructions for FirmaDigital Costa Rica Manual installation on ArchLinux
 
 [README Español](./README_es.md)
 
-This repository provides a *packaging rule (PKGBUILD)* that helps convert the official **Firmadigital** software package (distributed in Debian format) for use on Arch Linux-based systems.
+This repository provides a *packaging rule (PKGBUILD)* that helps install the official **Firmadigital** software package (distributed in Debian format) for use on Arch Linux-based systems.
 Please note that **the software itself is NOT provided in this repository**
 
 ## Downloading the Debian formatted package
@@ -19,7 +19,7 @@ You can download the ZIP file from the following link:
 ## Legal Disclaimer
 
 This repository only provides technical tools (such as `PKGBUILD`, scripts, or installation instructions)
-to assist in installing the **“Agente GAUDI”** software on Arch Linux-based systems, by converting from the
+to assist in installing the **“Agente GAUDI”** software on Arch Linux-based systems, from the
 official `.deb` packages published by the **Banco Central de Costa Rica (BCCR)**.
 
 ### IMPORTANT NOTES
@@ -40,16 +40,17 @@ The packaging rule is **open-source** and publicly reviewable. It describes stan
 By using any script contained in this repository, you acknowledge full responsibility and agree to comply with all related licensing and usage terms provided by **FirmaDigital** and the **BCCR**.
 
 ---
-## How to Use
+## Usage
 
 1. Download the `sfd_ClientesLinux_DEB64_Ubuntu_YOUR_DOWNLOADED_VERSION.zip` file from the link provided above.
 2. Place the ZIP file in the same directory as the script or specify the correct path in the `PKGBUILD`.
-3. Follow the instructions in the `PKGBUILD` to build and install the package.
+3. Follow the instructions in the `PKGBUILD` to install the Debian package.
 
 Once the dependency is downloaded, you can run the following commands in the directory of the script:
 ```bash
-makepkg
-sudo pacman -U firmadigital-VERSION-x86_64.pkg.tar.zst
+makepkg # Consume the official package Debian format for pacman processing
+sudo pacman -U firmadigital-VERSION-x86_64.pkg.tar.zst # Install the software
+rm firmadigital-VERSION-x86_64.pkg.tar.zst # Remove temporal files once installed the software
 ```
 Don't forget to enable and start the **pcscd** service, which is required to communicate with the card reader.
 ```bash
