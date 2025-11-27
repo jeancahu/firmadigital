@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function delete_scm_daemons (){
-    ### Eliminar el daemon midware porque es una obscenidad en consumo de recursos
+    ### Eliminar los procesos relacionados al daemon midware de cache
     while ps aux | grep -v grep | grep -c "[^A-Za-z]idocachesrv"
     do
         PROC_NUM=$( ps aux | grep -v grep | grep idocachesrv | sed 's| * |\t|g' |
@@ -14,13 +14,16 @@ function delete_scm_daemons (){
 delete_scm_daemons
 sleep 0.3
 
-## Levantar el servidor de cache
+## Levantar el servicio de cache ya que en
+# ArchLinux no se utiliza init.d
 /usr/lib/SCMiddleware/idocachesrv
 sleep 0.3
 
 ## Abrir la herramienta
 /opt/Agente-GAUDI/bin/Agente-GAUDI
 
+## Eliminar las instancias del servicio una vez
+## no es necesario para otras tareas
 delete_scm_daemons
 
 exit 0

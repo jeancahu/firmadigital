@@ -49,14 +49,14 @@ uso proporcionados por **Firmadigital**.
 
 ## Cómo Usarlo
 
-1. Descarga el archivo `sfd_ClientesLinux_DEB64_Ubutu24_Rev27.zip` desde el enlace proporcionado arriba.
+1. Descarga el archivo `sfd_ClientesLinux_DEB64_Ubuntu*.zip` desde el enlace proporcionado arriba.
 2. Coloca el archivo ZIP en el mismo directorio que el script o especifica la ruta correcta en el `PKGBUILD`.
 3. Sigue las instrucciones en el `PKGBUILD` para compilar e instalar el paquete.
 
 Una vez que la dependencia esté descargada, puedes ejecutar los siguientes comandos en el directorio del script:
 ```bash
 makepkg
-sudo pacman -U firmadigital-26-1-x86_64.pkg.tar.zst
+sudo pacman -U firmadigital-VERSION-x86_64.pkg.tar.zst
 ```
 No olvides habilitar e iniciar el servicio **pcscd**, que es necesario para la comunicación con el lector de tarjetas.
 ```bash
@@ -67,6 +67,11 @@ sudo systemctl start pcscd
 Para utilizar el **Agente-GAUDI**, ejecuta el siguiente comando en la terminal:
 ```bash
 agentegaudi
+```
+
+Para utilizar el **SCManager**, ejecuta el siguiente comando en la terminal:
+```bash
+scmanager
 ```
 
 Para más información, consulta la documentación oficial de **[Firma Digital](https://soportefirmadigital.com/)**.
