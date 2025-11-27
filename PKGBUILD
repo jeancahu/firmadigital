@@ -29,21 +29,15 @@ source=(
 md5sums=(
     'e2cd864d358caaa90f0939861c399fbc'
     '9686134ebbafc62a6b0c5dcb58e64d8c'
-    'e0dd664dae96c518526ad005c051e79d'  # agentegaudi
-    '0252f056a209588e3a58d1336f8a32c1'  # scmanager
+    'a9d272a7c9d4fd5fad90b254ccb5ee67'  # agentegaudi
+    '84deb1a6ce84b8a48baf97d9b30025c3'  # scmanager
 )
 
 prepare() {
     echo "========================================"
-    echo "Remember: The source file ${source[0]} must be downloaded manually."
-    echo "Download it from: https://soportefirmadigital.com/sfdj/dl.aspx?lang=es"
+    echo "Remember: The source file ${source[0]} must be manually downloaded."
+    echo "Download it from: https://soportefirmadigital.com"
     echo "========================================"
-
-    # Ahora descomprimir el archivo ZIP, si ya está descargado manualmente
-    if [ ! -f "$srcdir/${source[0]}" ]; then
-        echo "ERROR: ${source[0]} not found. Please download it manually."
-        exit 1
-    fi
 }
 
 package() {
