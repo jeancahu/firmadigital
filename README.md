@@ -1,4 +1,4 @@
-# Manual and Local installation for ArchLinux Package on FirmaDigital Costa Rica
+# Tool for Local Packaging FirmaDigital Costa Rica for a Manual installation on ArchLinux
 
 [README Español](./README_es.md)
 
