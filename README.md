@@ -2,7 +2,7 @@
 
 [README Español](./README_es.md)
 
-This repository provides a *packaging rule (PKGBUILD)* that helps convert the official digital signature software package (distributed in Debian format) for use on Arch Linux-based systems.
+This repository provides a *packaging rule (PKGBUILD)* that helps convert the official **Firmadigital** software package (distributed in Debian format) for use on Arch Linux-based systems.
 Please note that **the software itself is NOT provided in this repository**
 
 ## Downloading the Debian formatted package
@@ -27,7 +27,7 @@ official `.deb` packages published by the **Banco Central de Costa Rica (BCCR)**
 - This repository **does NOT include, distribute, store, or contain ANY binary file, code fragment, component, library, documentation, or intellectual property** from the Agente GAUDI software or the BCCR.
 - All required installation files (including the official `.deb` package) must be downloaded **directly** from the official BCCR or FirmaDigital sources by the user.
 - The use of Agente GAUDI is strictly subject to the **End-User License Agreement (EULA)** issued by the BCCR.
-- This repository does **not** modify, alter, patch, reverse engineer, adapt, repackage, or otherwise manipulate the official software.
+- This repository does **not** modify, alter, patch, reverse engineer, adapt, or otherwise manipulate the official software.
 - The provided script/PKGBUILD is an *optional technical helper only*. Using it does **not** exempt the user from reading, accepting, and fully complying with the official license agreement of Agente GAUDI **before installing or using it**.
 - The repository author assumes **no responsibility** for improper use, license violation, direct or indirect damages, legal consequences, or any misuse of the software.
 
