@@ -26,6 +26,7 @@ depends=(
     'pcsclite'
     'pcsc-tools'
     'ccid'
+    'ca-certificates-utils'
 ) # Dependencias mostradas en lib.sh para Ubuntu en su equivalente de ArchLinux
 install=firmadigital.install
 options=(!strip docs libtool emptydirs !zipman staticlibs)
@@ -93,9 +94,9 @@ package() {
                             tr -s ' \-()\t' '_'
                     )
             # echo $certname $( md5sum "$cert" | cut -f 1 -d ' ' )
-            if [ -f "${srcdir}/firmadigital/usr/share/ca-certificates/trust-source/anchors/firmadigitalcr/${certname}" ]; then : ;
+            if [ -f "${srcdir}/firmadigital/usr/share/ca-certificates/trust-source/anchors/${certname}" ]; then : ;
             else
-                   install -Dm644 "${cert}" "${srcdir}/firmadigital/usr/share/ca-certificates/trust-source/anchors/firmadigitalcr/${certname}"
+                   install -Dm644 "${cert}" "${srcdir}/firmadigital/usr/share/ca-certificates/trust-source/anchors/${certname}"
             fi
         done
 
