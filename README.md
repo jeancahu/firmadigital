@@ -63,7 +63,6 @@ rm firmadigital-VERSION-x86_64.pkg.tar.zst # Remove temporal files once installe
 Don't forget to enable and start the **pcscd** service, which is required to communicate with the card reader.
 ```bash
 sudo systemctl enable --now pcscd
-sudo systemctl start pcscd
 ```
 
 To use the **Agente-GAUDI**, run the following command in the terminal:
@@ -75,10 +74,6 @@ For **SCManager** execution type the following command:
 ```bash
 scmanager
 ```
-
-More information about the software itself on the
-**[FirmaDigital Official Documentation](https://soportefirmadigital.com/)**.
-
 
 ## License
 

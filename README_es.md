@@ -70,7 +70,6 @@ rm firmadigital-VERSION-x86_64.pkg.tar.zst # Borrar el archivo temporal de insta
 No olvides habilitar e iniciar el servicio **pcscd**, que es necesario para la comunicación con el lector de tarjetas.
 ```bash
 sudo systemctl enable --now pcscd
-sudo systemctl start pcscd
 ```
 
 Para utilizar el **Agente-GAUDI**, ejecuta el siguiente comando en la terminal:
@@ -83,8 +82,9 @@ Para utilizar el **SCManager**, ejecuta el siguiente comando en la terminal:
 scmanager
 ```
 
-Para más información, consulta la documentación oficial de **[Firma Digital](https://soportefirmadigital.com/)**.
+Para más información, consulte la documentación oficial.
 
 ## Licencia
 
-El software y el script se proporcionan bajo los términos de una **licencia personalizada**. Consulta los términos de licencia específicos del software que se está instalando.
+El software y el script se proporcionan bajo los términos de una **licencia personalizada**.
+Consulta los términos de licencia específicos del software que se está instalando.
