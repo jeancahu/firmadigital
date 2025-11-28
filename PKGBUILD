@@ -36,12 +36,10 @@ source=(
     "agentegaudi" # Servicio para logearse con firmadigital desde sitios WEB gov.
     "scmanager"   # Herramienta para cambio de PIN en la tarjeta.
 )
-md5sums=(
-    'e2cd864d358caaa90f0939861c399fbc'
-    '9686134ebbafc62a6b0c5dcb58e64d8c'
-    'a9d272a7c9d4fd5fad90b254ccb5ee67'  # agentegaudi
-    '84deb1a6ce84b8a48baf97d9b30025c3'  # scmanager
-)
+md5sums=('e2cd864d358caaa90f0939861c399fbc'
+         '9686134ebbafc62a6b0c5dcb58e64d8c'
+         'dce05322f53ea2c8cb69138deedb115b'
+         'b33e24a68472473c3ab26b91b2f288e3')
 
 prepare() {
     echo "========================================"

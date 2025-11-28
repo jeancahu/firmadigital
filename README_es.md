@@ -42,9 +42,7 @@ mediante los paquetes oficiales (.deb) publicados por el Banco Central de Costa 
 - El autor de este repositorio no se responsabiliza por el uso indebido del software,
   incumplimiento de la licencia del BCCR, posibles daños derivados de la instalación o uso,
   ni por cualquier acción que contravenga la legislación vigente o los términos de licencia.
-- Si usted no está autorizado por el BCCR para usar el software Agente GAUDI en su sistema,
-  o no ha aceptado expresamente los términos de su licencia, debe abstenerse de utilizar
-  el contenido de este repositorio.
+> ❗Si usted no está autorizado por el BCCR para usar el software Agente GAUDI en su sistema, o no ha aceptado expresamente los términos de su licencia, debe abstenerse de utilizar el contenido de este repositorio.
 - Este proyecto se proporciona tal cual es de carácter educativo/técnico/personal
   y no está afiliado, asociado, respaldado, aprobado ni supervisado por el Banco Central de Costa Rica.
 - La regla de empaquetado es OpenSource por lo que puede someterse al escrutinio público, la misma
