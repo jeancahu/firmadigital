@@ -1,5 +1,13 @@
 # Instructions for FirmaDigital Costa Rica Manual installation on ArchLinux
 
+![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?style=for-the-badge&logo=arch-linux&logoColor=white)
+![Manjaro](https://img.shields.io/badge/Manjaro-34BE5B?style=for-the-badge&logo=manjaro&logoColor=white)
+![EndeavourOS](https://img.shields.io/badge/EndeavourOS-7F7FFF?style=for-the-badge&logo=endeavouros&logoColor=white)
+![SteamOS](https://img.shields.io/badge/SteamOS-000000?style=for-the-badge&logo=steam&logoColor=white)
+![pacman](https://img.shields.io/badge/pacman-FBD000?style=for-the-badge&logo=arch-linux&logoColor=black)
+![One Command Install](https://img.shields.io/badge/install-one--command-success?style=for-the-badge&logo=console)
+![License: Custom](https://img.shields.io/badge/License-Custom-lightgrey?style=for-the-badge)
+
 [README Español](./README_es.md)
 
 This repository provides a *packaging rule (PKGBUILD)* that helps install the official **Firmadigital** software package (distributed in Debian format) for use on Arch Linux-based systems.

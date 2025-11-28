@@ -15,8 +15,8 @@ Puedes descargar el archivo ZIP desde el siguiente enlace:
 ## Descargo de Responsabilidad / DISCLAIMER
 
 Este repositorio únicamente proporciona herramientas técnicas (como PKGBUILD, scripts o instrucciones)
-para facilitar la instalación del software "Agente GAUDI" en sistemas basados en Arch Linux,
-mediante conversión desde los paquetes oficiales (.deb) publicados por el Banco Central de Costa Rica (BCCR).
+para facilitar la instalación del software "Agente GAUDI" en sistemas basados en Arch Linux
+mediante los paquetes oficiales (.deb) publicados por el Banco Central de Costa Rica (BCCR).
 
 ### IMPORTANTE:
 
